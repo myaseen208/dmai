@@ -5,10 +5,12 @@
 \alias{dmai.default}
 \title{Divisia Monetary Aggregates Index}
 \usage{
-\method{dmai}{default}(.data)
+\method{dmai}{default}(.data, method = c("Barnett", "Hancock"))
 }
 \arguments{
 \item{.data}{data.frame}
+
+\item{method}{Method to calculate Divisia monetary aggregates index, Barnett or Hancock}
 }
 \value{
 Divisia Monetary Aggregates Index
@@ -51,21 +53,37 @@ Data <-
 
 Data$Date <- as.Date(paste("01", Data$Date, sep = "-"), format = "\%d-\%b-\%Y")
 Data
-DMAI <- dmai(.data = Data)
-DMAI
+
+# Divisia monetary aggregates index using Barnett method
+DMAIBarnett <- dmai(.data = Data, method = "Barnett")
+DMAIBarnett
+
+# Divisia monetary aggregates index using Hancock method
+DMAIHancock <- dmai(.data = Data, method = "Hancock")
+DMAIHancock
 
 library(ggplot2)
-ggplot(data = DMAI, mapping = aes(x = Date, y = DMAI)) +
+ggplot(data = DMAIBarnett, mapping = aes(x = Date, y = DMAI)) +
   geom_point() +
   geom_line() +
   geom_text(aes(label = round(DMAI, 2)), vjust = "inward", hjust = "inward") +
   scale_x_date(
                 date_breaks = "6 months"
               , date_labels = "\%b-\%Y"
-              , limits = c(min(DMAI$Date), max = max(DMAI$Date))) +
+              , limits = c(min(DMAIBarnett$Date), max = max(DMAIBarnett$Date))) +
   theme_bw() +
   theme(axis.text.x  = element_text(angle = 90))
 
+ggplot(data = DMAIHancock, mapping = aes(x = Date, y = DMAI)) +
+  geom_point() +
+  geom_line() +
+  geom_text(aes(label = round(DMAI, 2)), vjust = "inward", hjust = "inward") +
+  scale_x_date(
+                date_breaks = "6 months"
+              , date_labels = "\%b-\%Y"
+              , limits = c(min(DMAIHancock$Date), max = max(DMAIHancock$Date))) +
+  theme_bw() +
+  theme(axis.text.x  = element_text(angle = 90))
 
 }
 \references{
