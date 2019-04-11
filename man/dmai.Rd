@@ -5,12 +5,15 @@
 \alias{dmai.default}
 \title{Divisia Monetary Aggregates Index}
 \usage{
-\method{dmai}{default}(.data, method = c("Barnett", "Hancock"))
+\method{dmai}{default}(.data, method = c("Barnett", "Hancock"),
+  logbase = 10)
 }
 \arguments{
 \item{.data}{data.frame}
 
 \item{method}{Method to calculate Divisia monetary aggregates index, Barnett or Hancock}
+
+\item{logbase}{base of the log to be used i.e 10 for log to the base 10 and exp(1) for natural log to be used}
 }
 \value{
 Divisia Monetary Aggregates Index

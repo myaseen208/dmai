@@ -5,6 +5,7 @@
 #'
 #' @param .data   data.frame
 #' @param method  Method to calculate Divisia monetary aggregates index, Barnett or Hancock
+#' @param logbase base of the log to be used i.e 10 for log to the base 10 and exp(1) for natural log to be used
 #'
 #'
 #'
@@ -119,16 +120,16 @@ if(getRversion() >= "2.15.1"){
       , "x"
     )
   )
-  }
+}
 
-dmai <- function(.data, method = c("Barnett", "Hancock")){
+dmai <- function(.data, method = c("Barnett", "Hancock"), logbase = NULL){
   UseMethod("dmai")
-  }
+}
 
 #' @export
 #' @rdname dmai
 
-dmai.default <- function(.data, method = c("Barnett", "Hancock")){
+dmai.default <- function(.data, method = c("Barnett", "Hancock"), logbase = 10){
   if(method == "Hancock"){
     DMAI <-
       .data %>%
@@ -139,43 +140,45 @@ dmai.default <- function(.data, method = c("Barnett", "Hancock")){
       dplyr::arrange(Date, grp) %>%
       dplyr::group_by(Date) %>%
       dplyr::mutate(
-               rB = max(r)
-             , W  = x*(rB - r)/sum(x*(rB - r))
-               ) %>%
+        rB = max(r)
+        , W  = x*(rB - r)/sum(x*(rB - r))
+      ) %>%
       dplyr::ungroup(Date) %>%
       dplyr::mutate(
-              W12  = (W + dplyr::lag(x = W, n = length(unique(grp))))/2*(x/dplyr::lag(x = x, n = length(unique(grp))) - 1)
-               ) %>%
+        W12  = (W + dplyr::lag(x = W, n = length(unique(grp))))/2*(x/dplyr::lag(x = x, n = length(unique(grp))) - 1)
+      ) %>%
       dplyr::group_by(Date) %>%
       dplyr::mutate(DMAI = sum(W12)*100) %>%
       dplyr::select(Date, DMAI) %>%
       dplyr::distinct()
-        }
+  }
 
   else{
-    DMAI <-
-        .data %>%
-        tidyr::gather(val, var, -Date) %>%
-        tidyr::extract(val, c("value", "grp"), regex = "([a-z]+)([0-9]+)") %>%
-        tidyr::spread(value, var) %>%
-        dplyr::mutate(grp = as.numeric(grp)) %>%
-        dplyr::arrange(Date, grp) %>%
-        dplyr::group_by(Date) %>%
-        dplyr::mutate(
-                 R    = max(r)
-               , Pi   = (R-r)/(1+R)
-               , St   = Pi*x / sum(Pi*x)
-                 ) %>%
-        dplyr::ungroup(Date) %>%
-        dplyr::mutate(
-                 StStar  = (St + dplyr::lag(x = St, n = length(unique(grp))))/2
-               , StStar1 = StStar*(log10(x) - log10(dplyr::lag(x = x, n = length(unique(grp)))))
-                 ) %>%
-        dplyr::group_by(Date) %>%
-        dplyr::mutate(DMAI = sum(StStar1)*100) %>%
-        dplyr::select(Date, DMAI) %>%
-        dplyr::distinct()
-    }
+    logbase <- ifelse(is.null(logbase) | logbase == 10, 10, exp(1))
 
-    return(DMAI)
+    DMAI <-
+      .data %>%
+      tidyr::gather(val, var, -Date) %>%
+      tidyr::extract(val, c("value", "grp"), regex = "([a-z]+)([0-9]+)") %>%
+      tidyr::spread(value, var) %>%
+      dplyr::mutate(grp = as.numeric(grp)) %>%
+      dplyr::arrange(Date, grp) %>%
+      dplyr::group_by(Date) %>%
+      dplyr::mutate(
+        R    = max(r)
+        , Pi   = (R-r)/(1+R)
+        , St   = Pi*x / sum(Pi*x)
+      ) %>%
+      dplyr::ungroup(Date) %>%
+      dplyr::mutate(
+        StStar  = (St + dplyr::lag(x = St, n = length(unique(grp))))/2
+        , StStar1 = StStar*(log(x = x, base = logbase) - log(dplyr::lag(x = x, n = length(unique(grp))), base = logbase))
+      ) %>%
+      dplyr::group_by(Date) %>%
+      dplyr::mutate(DMAI = sum(StStar1)*100) %>%
+      dplyr::select(Date, DMAI) %>%
+      dplyr::distinct()
   }
+
+  return(DMAI)
+}
