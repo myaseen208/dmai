@@ -1,7 +1,7 @@
 Package: dmai
 Type: Package
 Title: Divisia Monetary Aggregates Index
-Version: 0.3.0
+Version: 0.4.0
 Authors@R: c(
               person(c("Muhammad", "Yaseen"),  email = "myaseen208@gmail.com", role = c("aut", "cre"))
             , person(c("Ahmad",  "Nadeem"),  email = "Ahmed.Nadeem@sbp.org.pk", role = c("aut", "ctb"))

@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dmai</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -115,7 +115,7 @@
 
     <pre class="usage"><span class='co'># S3 method for default</span>
 <span class='fu'>dmai</span>(<span class='no'>.data</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Barnett"</span>, <span class='st'>"Hancock"</span>),
-  <span class='kw'>logbase</span> <span class='kw'>=</span> <span class='fl'>10</span>)</pre>
+  <span class='kw'>logbase</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -130,7 +130,7 @@
     </tr>
     <tr>
       <th>logbase</th>
-      <td><p>base of the log to be used i.e 10 for log to the base 10 and exp(1) for natural log to be used</p></td>
+      <td><p>base of log to be used in Barnett divisia monetary aggregates index method, default is NULL or 10</p></td>
     </tr>
     </table>
     
@@ -197,7 +197,7 @@
 #&gt; #   x13 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r6 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   r7 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r8 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r9 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r10 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r11 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r12 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, r13 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Divisia monetary aggregates index using Barnett method</span>
-<span class='no'>DMAIBarnett</span> <span class='kw'>&lt;-</span> <span class='fu'>dmai</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>Data</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"Barnett"</span>)
+<span class='no'>DMAIBarnett</span> <span class='kw'>&lt;-</span> <span class='fu'>dmai</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>Data</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"Barnett"</span>, <span class='kw'>logbase</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 <span class='no'>DMAIBarnett</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 36 x 2</span><span>
 #&gt; </span><span style='color: #949494;'># Groups:   Date [36]</span><span>
 #&gt;    Date          DMAI
@@ -212,6 +212,51 @@
 #&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 2003-12-01  -</span><span style='color: #BB0000;'>1.05</span><span> 
 #&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 2004-06-01  23.1  
 #&gt; </span><span style='color: #BCBCBC;'>10</span><span> 2004-12-01  -</span><span style='color: #BB0000;'>9.54</span><span> 
+#&gt; </span><span style='color: #949494;'># … with 26 more rows</span><span></div><div class='input'><span class='no'>DMAIBarnett1</span> <span class='kw'>&lt;-</span> <span class='fu'>dmai</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>Data</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"Barnett"</span>, <span class='kw'>logbase</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='no'>DMAIBarnett1</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 36 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># Groups:   Date [36]</span><span>
+#&gt;    Date          DMAI
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;date&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 2000-06-01  </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 2000-12-01   4.21 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 2001-06-01   1.04 
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 2001-12-01  10.3  
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 2002-06-01  -</span><span style='color: #BB0000;'>0.777</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 2002-12-01 -</span><span style='color: #BB0000;'>21.0</span><span>  
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 2003-06-01   9.94 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 2003-12-01  -</span><span style='color: #BB0000;'>1.05</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 2004-06-01  23.1  
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 2004-12-01  -</span><span style='color: #BB0000;'>9.54</span><span> 
+#&gt; </span><span style='color: #949494;'># … with 26 more rows</span><span></div><div class='input'><span class='no'>DMAIBarnett2</span> <span class='kw'>&lt;-</span> <span class='fu'>dmai</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>Data</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"Barnett"</span>, <span class='kw'>logbase</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='no'>DMAIBarnett2</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 36 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># Groups:   Date [36]</span><span>
+#&gt;    Date         DMAI
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;date&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 2000-06-01  </span><span style='color: #BB0000;'>NA</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 2000-12-01  14.0 
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 2001-06-01   3.45
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 2001-12-01  34.2 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 2002-06-01  -</span><span style='color: #BB0000;'>2.58</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 2002-12-01 -</span><span style='color: #BB0000;'>69.7</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 2003-06-01  33.0 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 2003-12-01  -</span><span style='color: #BB0000;'>3.49</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 2004-06-01  76.8 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 2004-12-01 -</span><span style='color: #BB0000;'>31.7</span><span> 
+#&gt; </span><span style='color: #949494;'># … with 26 more rows</span><span></div><div class='input'><span class='no'>DMAIBarnett3</span> <span class='kw'>&lt;-</span> <span class='fu'>dmai</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>Data</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"Barnett"</span>, <span class='kw'>logbase</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp</a></span>(<span class='fl'>1</span>))
+<span class='no'>DMAIBarnett3</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 36 x 2</span><span>
+#&gt; </span><span style='color: #949494;'># Groups:   Date [36]</span><span>
+#&gt;    Date         DMAI
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;date&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 2000-06-01  </span><span style='color: #BB0000;'>NA</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 2000-12-01   9.69
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 2001-06-01   2.39
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 2001-12-01  23.7 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 2002-06-01  -</span><span style='color: #BB0000;'>1.79</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 2002-12-01 -</span><span style='color: #BB0000;'>48.3</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 2003-06-01  22.9 
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 2003-12-01  -</span><span style='color: #BB0000;'>2.42</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 2004-06-01  53.2 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 2004-12-01 -</span><span style='color: #BB0000;'>22.0</span><span> 
 #&gt; </span><span style='color: #949494;'># … with 26 more rows</span><span></div><div class='input'>
 <span class='co'># Divisia monetary aggregates index using Hancock method</span>
 <span class='no'>DMAIHancock</span> <span class='kw'>&lt;-</span> <span class='fu'>dmai</span>(<span class='kw'>.data</span> <span class='kw'>=</span> <span class='no'>Data</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"Hancock"</span>)
