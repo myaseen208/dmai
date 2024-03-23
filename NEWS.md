@@ -1,5 +1,6 @@
 # Changes in stability Version 0.5.0 
 
+* Updated to pass CRAN tests
 
 # Changes in stability Version 0.4.0 
 ## Bug 
