@@ -1,24 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dmai.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dmaiIntro.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://myaseen208.com/dmai/404.html</loc></url>
+<url><loc>https://myaseen208.com/dmai/authors.html</loc></url>
+<url><loc>https://myaseen208.com/dmai/index.html</loc></url>
+<url><loc>https://myaseen208.com/dmai/news/index.html</loc></url>
+<url><loc>https://myaseen208.com/dmai/reference/dmai.html</loc></url>
+<url><loc>https://myaseen208.com/dmai/reference/dmaiIntro.html</loc></url>
+<url><loc>https://myaseen208.com/dmai/reference/index.html</loc></url>
 </urlset>
+

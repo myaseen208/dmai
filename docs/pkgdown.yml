@@ -1,6 +1,8 @@
-pandoc: 3.1.1
-pkgdown: 2.0.7
-pkgdown_sha: ~
+pandoc: '3.2'
+pkgdown: 2.1.1.9000
+pkgdown_sha: 0a18bc718640aee7160a0ebbcdef5ecaae2ac4a4
 articles: {}
-last_built: 2024-03-23T21:47Z
-
+last_built: 2024-10-12T01:06Z
+urls:
+  reference: https://myaseen208.com/dmai/reference
+  article: https://myaseen208.com/dmai/articles

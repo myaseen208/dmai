@@ -1,0 +1,11 @@
+bibentry(
+  "manual",
+  header = "Please, support this project by citing it in your publications!",
+  title = "dmai: Divisia Monetary Aggregates Index",
+	author = c(
+	           person(c("Muhammad"), "Yaseen")
+	         , person(c("Ahmad"), "Nadeem")
+	         ),
+  year = 2018,
+  journal = "The Comprehensive R Archive Network (CRAN)"
+)
