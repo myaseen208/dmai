@@ -1,0 +1,2 @@
+topic,object,reason
+dmai,DMAIBarnett,"0.5.0 used logarithms to base 10 by default; 1.0.0 uses natural logarithms (logbase = 10 reproduces it, test-legacy.R)"

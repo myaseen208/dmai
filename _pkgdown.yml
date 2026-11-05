@@ -1,0 +1,84 @@
+url: https://myaseen208.com/dmai/
+title: Divisia Monetary Aggregates Index
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+  math-rendering: mathjax
+  bslib:
+    base_font:
+      google: Crimson Pro
+    heading_font:
+      google: Crimson Pro
+    code_font:
+      google: JetBrains Mono
+    bg: "#ffffff"
+    fg: "#1a1a1a"
+    primary: "#2c5f8a"
+    link-color: "#2c5f8a"
+
+home:
+  sidebar:
+    structure: [links, license, citation, authors, dev]
+
+navbar:
+  structure:
+    left:  [home, reference, articles, pdf, news]
+    right: [search, github]
+  components:
+    pdf:
+      text: PDF
+      href: pdf/index.html
+
+articles:
+  - title: Getting started
+    navbar: Getting started
+    contents:
+      - dmai_01_getting_started
+      - dmai_02_theory
+  - title: Methods
+    navbar: Methods
+    contents:
+      - dmai_03_choices
+  - title: Application and validation
+    navbar: Application and validation
+    contents:
+      - dmai_04_app
+      - dmai_05_validation
+
+reference:
+  # every help page must appear (tools/check-pkgdown-index.R)
+  - title: Monetary aggregates
+    desc: Divisia (Barnett 1980), Fisher ideal, simple-sum and currency equivalent indexes.
+    contents:
+      - dmai
+      - dmai_compare
+  - title: Weights and dispersion
+    contents:
+      - dmai_user_cost
+      - dmai_moments
+  - title: Results, plots and interpretation
+    contents:
+      - dmai-methods
+      - autoplot.dmai_result
+      - dmai_interpret
+  - title: Application
+    contents:
+      - dmai_app
+  - title: Data
+    contents:
+      - money_sim
+      - cpi_ch19
+  - title: Utilities
+    contents:
+      - dmai_cite
+      - dmai_theme
+      - dmai_save
+      - dmai_notation
+      - dmai_reference
+      - dmai-package
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with

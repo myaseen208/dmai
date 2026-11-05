@@ -1,0 +1,16 @@
+# The example of dmai 0.5.0 with a seed, so that the results can be compared
+set.seed(2024)
+mins <- c(162324, 2116, 92989, 205155, 6082, 11501, 61888, 13394, 25722, 6414, 11688, 2311, 23955)
+maxs <- c(2880189, 14542, 3019556, 4088784, 186686, 50677, 901419, 347020, 701887, 37859, 113865, 23130, 161318)
+rmin <- c(0, 0, 0, 0.93, 1.12, 0.99, 1.51, 2.20, 2.64, 2.80, 3.01, 2.78, 3.23)
+rmax <- c(0, 0, 0, 7.43, 7.00, 7.93, 7.42, 9.15, 9.37, 11.34, 12.41, 13.68, 14.96)
+Data <- data.frame(Date = as.Date(paste("01", paste(c("Jun", "Dec"), rep(2000:2017, each = 2), sep = "-"), sep = "-"),
+                                  format = "%d-%b-%Y"))
+for (i in 1:13) Data[[paste0("x", i)]] <- runif(n = 36, min = mins[i], max = maxs[i])
+for (i in 1:13) Data[[paste0("r", i)]] <- runif(n = 36, min = rmin[i], max = rmax[i])
+Data <- tibble::as_tibble(Data)
+DMAIBarnett  <- dmai(.data = Data, method = "Barnett", logbase = NULL)
+DMAIBarnett1 <- dmai(.data = Data, method = "Barnett", logbase = 10)
+DMAIBarnett2 <- dmai(.data = Data, method = "Barnett", logbase = 2)
+DMAIBarnett3 <- dmai(.data = Data, method = "Barnett", logbase = exp(1))
+DMAIHancock  <- dmai(.data = Data, method = "Hancock")
