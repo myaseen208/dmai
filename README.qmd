@@ -16,13 +16,14 @@ desc  <- read.dcf("DESCRIPTION", fields = c("Version", "Depends", "License"))
 r_min <- sub(".*R \\(>= *([0-9.]+)\\).*", "\\1", desc[, "Depends"])
 enc   <- function(x) {
   x <- gsub("-", "--", x, fixed = TRUE)
-  for (p in list(c(" ", "%20"), c("(", "%28"), c(")", "%29"), c(">", "%3E"), c("=", "%3D"), c("+", "%2B"))) {
+  for (p in list(c(" ", "%20"), c("(", "%28"), c(")", "%29"), c(">", "%3E"), c("=", "%3D"), c("+", "%2B"), c("|", "%7C"))) {
     x <- gsub(p[1L], p[2L], x, fixed = TRUE)
   }
   x
 }
 lic   <- sub(" \\+ file LICENSE$", "", desc[, "License"])
-lic_url <- if (grepl("^MIT", lic)) "https://opensource.org/licenses/MIT" else if (grepl("GPL-3", lic))
+lic_url <- if (grepl("^MIT", lic)) "https://opensource.org/licenses/MIT" else if (grepl("|", lic, fixed = TRUE))
+  "https://www.gnu.org/licenses/licenses.html" else if (grepl("GPL-3", lic))
   "https://www.gnu.org/licenses/gpl-3.0.html" else "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
 ```
 
